@@ -18,6 +18,7 @@ const Login = () => {
       <p>
         new user? <Text style={{cursor:"pointer"}} strong onClick={handleSignup}>Sign-up</Text>
       </p>
+      <p>hey this is cool im making new git repo</p>
 
       <Form
         name="basic"
