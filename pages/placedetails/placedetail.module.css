@@ -1,0 +1,25 @@
+.stickyMenu {
+  position: -webkit-sticky;
+  position: sticky !important;
+  top: 0;
+  background-color: white;
+}
+.facilityIcon{
+  width: 54px;
+  height: 54px;
+}
+.facilityFont{
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 30px;
+}
+.facilityBox{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.facilityBox > p{
+  margin: 0;
+
+}
