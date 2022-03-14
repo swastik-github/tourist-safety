@@ -1,22 +1,63 @@
-import { Form, Input, Button, Checkbox, Typography } from "antd";
-import {useRouter} from "next/router";
+import { Form, Input, Button, Typography } from "antd";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import axios from 'axios'
+
+import { sendError } from "next/dist/server/api-utils";
 const { Text } = Typography;
+
 const Login = () => {
   const router = useRouter();
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const onFinish = async (values) => {
+    console.log("form working", values);
+    try {
+      const response = await axios.post("http://localhost:1000/auth/login", values);
+
+      console.log(response,"ressss");
+      if(response){
+        localStorage.setItem("token", response.data.token);
+        router.replace("/compliant/compliantform");
+
+      }else{
+        throw new sendError(response)
+      }
+    
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
   const handleSignup = () => {
-    router.push("register");
+    router.replace("register");
   };
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    axios
+      .get("http://localhost:1000/protected", {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        router.replace("/compliant/compliantform");
+      })
+      .catch((err) => {
+        console.log(err);
+        return;
+      });
+  }, []);
+
   return (
     <div>
       <p>
-        new user? <Text style={{cursor:"pointer"}} strong onClick={handleSignup}>Sign-up</Text>
+        user?{" "}
+        <Text style={{ cursor: "pointer" }} strong onClick={handleSignup}>
+          Sign-up
+        </Text>
       </p>
       <p>hey this making new git repo</p>
       <p>lets check again</p>
@@ -32,7 +73,7 @@ const Login = () => {
       >
         <Form.Item
           label="Username"
-          name="username"
+          name="email"
           rules={[{ required: true, message: "Please input your username!" }]}
         >
           <Input />
@@ -44,14 +85,6 @@ const Login = () => {
           rules={[{ required: true, message: "Please input your password!" }]}
         >
           <Input.Password />
-        </Form.Item>
-
-        <Form.Item
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{ offset: 8, span: 16 }}
-        >
-          <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>

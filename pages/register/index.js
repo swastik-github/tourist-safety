@@ -1,8 +1,15 @@
 import { Form, Input, Button, Checkbox } from "antd";
+import axios from 'axios'
+import { useRouter } from "next/router";
 
-function Register() {
-  const onFinish = (values) => {
+ function Register() {
+  const route = useRouter()
+  const onFinish = async(values) => {
     console.log("Success:", values);
+    const response = await axios.post('http://localhost:1000/auth/register', values)
+    if(response.status ==200){
+      route.replace('/login')
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -29,13 +36,6 @@ function Register() {
       <Form.Item
         label="Email"
         name="email"
-        rules={[{ required: true, message: "Please input your username!" }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item
-        label="Username"
-        name="username"
         rules={[{ required: true, message: "Please input your username!" }]}
       >
         <Input />

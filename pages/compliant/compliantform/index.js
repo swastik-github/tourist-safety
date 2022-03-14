@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState } from "react";
 import {
   Form,
   InputNumber,
@@ -15,9 +15,13 @@ import {
   Row,
   Col,
 } from 'antd';
+import axios from 'axios'
+import { useRouter } from "next/router";
 const { TextArea } = Input;
 const { Option } = Select;
 function CompliantForm() {
+  const router =  useRouter()
+  const [userDetails, setUserDetails] = useState({})
   const onFinish = (values) => {
     console.log("Success:", values);
   };
@@ -25,10 +29,25 @@ function CompliantForm() {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-  
+  useEffect(() => {
+      const token = localStorage.getItem('token');
+      axios.get("http://localhost:1000/protected", {
+          headers: {
+              Authorization: token,
+          }
+      }).then(res => {
+        console.log(res);
+          setUserDetails(res.data.user.user)
+      }).catch(err => {
+          console.log(err);
+          router.replace('/login')
+      })
+  }, [])
 
   return (
     <div>
+    <a href="">you are {userDetails.name}</a>
+    <p>{userDetails.email}</p>
     <h1>Travel Compliant Form</h1>
       <Form
         name="basic"
