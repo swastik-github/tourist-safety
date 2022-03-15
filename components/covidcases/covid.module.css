@@ -1,0 +1,14 @@
+.activedot {
+    height: 12px;
+    width: 12px;
+    background-color:#ED3030;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .fateldot {
+    height: 12px;
+    width: 12px;
+    background-color:#C4C4C4;
+    border-radius: 50%;
+    display: inline-block;
+  }

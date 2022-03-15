@@ -1,0 +1,68 @@
+.navbar {
+  padding: 40px 0px;
+  top: 0;
+  right: 0;
+  width: 100%;
+  background-color: var(--backgroundBlue);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.navbarbox{
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main_logo {
+  font-size: 32px;
+  
+}
+.deskvw_tags {
+  display: none;
+}
+.hamburger {
+  font-size: 32px;
+}
+@media screen and (min-width: 800px) {
+  .navbar {
+    padding: 40px 0px;
+    z-index: 10;
+  }
+  .navbarbox{
+    min-width: 800px;
+  }
+  .hamburger {
+    display: none;
+  }
+  .deskvw_tags {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+  }
+}
+.deskvw_tags a {
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.deskvw_tags a:hover {
+  color: #0582ff;
+}
+
+@media screen and (min-width: 1200px) {
+  .navbarbox{
+    min-width: 1000px;
+  }
+
+}
+@media screen and (min-width: 1300px) {
+  .navbarbox{
+    min-width: 1200px;
+  }
+
+}
+

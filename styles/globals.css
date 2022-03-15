@@ -1,0 +1,30 @@
+
+:root {
+  --backgroundBlue: #F4F8FC;
+  --white: #ffffff;
+  --darkBlue: #115371;
+  --darkredred: #B24625;
+  --yellow: #FED42B;
+  --lightred: #D24242;
+  --orange: #F7941E;
+;}
+
+
+body {
+  margin: 0 auto !important;
+  max-width: 1200px !important;
+  width: 90vw !important;
+  
+}
+.pac-container:after {
+  /* Disclaimer: not needed to show 'powered by Google' if also a Google Map is shown */
+
+  background-image: none !important;
+  height: 0px;
+}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+* {
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+
