@@ -22,11 +22,11 @@ function Home() {
   //   setAddress(value);
   //   setCoordinates(latLng);
   // };
-
+  console.log(typeof process.env.NEXT_PUBLIC_GOOGLE_API_KEY) 
   return (
     <Autocomplete
       style={{ width: "250px" }}
-      apiKey={process.env.GOOGLE_API_KEY}
+      apiKey={String(process.env.NEXT_PUBLIC_GOOGLE_API_KEY)}
       onPlaceSelected={(selected, a, c) => {
         router.push("placedetails/" + selected.place_id);
       }}
